@@ -1,0 +1,505 @@
+openapi: 3.0.0
+info:
+  x-skaffolder-id-project: 5ee5f104eba0fa5742543150
+  title: cc1
+  description: You can obtain JWT token from login API
+  version: 0.1
+servers:
+  - url: http://localhost:3000/api
+    description: Local server for testing
+paths:
+  /login:
+    post:
+      x-skaffolder-ignore: true
+      summary: Login API
+      security: []
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              example:
+                username: admin
+                password: 62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /verifyToken:
+    post:
+      x-skaffolder-ignore: true
+      summary: Verify token API
+      security: []
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /changePassword:
+    post:
+      x-skaffolder-ignore: true
+      summary: Change password API
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                passwordNew:
+                  type: string
+                passwordOld:
+                  type: string
+      responses:
+        "200":
+          description: OK
+  "/user/{id}/changePassword":
+    post:
+      x-skaffolder-id: 5ee5f104eba0fa574254315d
+      x-skaffolder-name: changePassword
+      x-skaffolder-id-resource: 5ee5f104eba0fa574254315a
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: 
+      x-skaffolder-crudType: 
+      x-skaffolder-description: Change password of user from admin
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: object
+      x-skaffolder-url: /{id}/changePassword
+      x-skaffolder-roles:
+        - 5ee5f104eba0fa574254315c
+      summary: Change password of user from admin
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+  /user:
+    post:
+      x-skaffolder-id: 5ee5f104eba0fa574254315e
+      x-skaffolder-name: create
+      x-skaffolder-id-resource: 5ee5f104eba0fa574254315a
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: create
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION create
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION create
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mail:
+                  type: string
+                name:
+                  type: string
+                password:
+                  type: string
+                roles:
+                  type: string
+                surname:
+                  type: string
+                username:
+                  type: string
+    get:
+      x-skaffolder-id: 5ee5f104eba0fa5742543161
+      x-skaffolder-name: list
+      x-skaffolder-id-resource: 5ee5f104eba0fa574254315a
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: list
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION list
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION list
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+  "/user/{id}":
+    delete:
+      x-skaffolder-id: 5ee5f104eba0fa5742543162
+      x-skaffolder-name: delete
+      x-skaffolder-id-resource: 5ee5f104eba0fa574254315a
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: delete
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION delete
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION delete
+      tags:
+        - User
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      x-skaffolder-id: 5ee5f104eba0fa5742543164
+      x-skaffolder-name: get
+      x-skaffolder-id-resource: 5ee5f104eba0fa574254315a
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: get
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION get
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION get
+      tags:
+        - User
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id resource
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    post:
+      x-skaffolder-id: 5ee5f104eba0fa574254315f
+      x-skaffolder-name: update
+      x-skaffolder-id-resource: 5ee5f104eba0fa574254315a
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: update
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION update
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION update
+      tags:
+        - User
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+  /ccvv:
+    post:
+      x-skaffolder-id: 5ee5f20deba0fa57425431f7
+      x-skaffolder-name: create
+      x-skaffolder-id-resource: 5ee5f198eba0fa57425431ec
+      x-skaffolder-resource: ccvv
+      x-skaffolder-crudAction: create
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION create
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION create
+      tags:
+        - ccvv
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ccvv"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Cognome:
+                  type: string
+                Nome:
+                  type: string
+                Sesso:
+                  type: string
+  "/ccvv/findByCognome/{key}":
+    get:
+      x-skaffolder-id: 5ee5f1cfeba0fa57425431f1
+      x-skaffolder-name: findByCognome
+      x-skaffolder-id-resource: 5ee5f198eba0fa57425431ec
+      x-skaffolder-resource: ccvv
+      x-skaffolder-crudAction: findByCognome
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION findByCognome
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /findByCognome/{key}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION findByCognome
+      tags:
+        - ccvv
+      parameters:
+        - name: key
+          x-skaffolder-type: Objectid
+          in: path
+          description: Id of the resource Cognome to search
+          required: true
+          schema:
+            type: Objectid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ccvv"
+  "/ccvv/{id}":
+    get:
+      x-skaffolder-id: 5ee5f20deba0fa57425431f8
+      x-skaffolder-name: get
+      x-skaffolder-id-resource: 5ee5f198eba0fa57425431ec
+      x-skaffolder-resource: ccvv
+      x-skaffolder-crudAction: get
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION get
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION get
+      tags:
+        - ccvv
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id resource
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ccvv"
+    post:
+      x-skaffolder-id: 5ee5f20deba0fa57425431f9
+      x-skaffolder-name: update
+      x-skaffolder-id-resource: 5ee5f198eba0fa57425431ec
+      x-skaffolder-resource: ccvv
+      x-skaffolder-crudAction: update
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION update
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION update
+      tags:
+        - ccvv
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ccvv"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ccvv"
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      x-skaffolder-id: 5ee5f104eba0fa574254315a
+      x-skaffolder-id-db: 5ee5f104eba0fa5742543151
+      x-skaffolder-id-entity: 5ee5f104eba0fa5742543152
+      x-skaffolder-url: /user
+      x-skaffolder-type: User
+      properties:
+        _id:
+          type: string
+          x-skaffolder-required: true
+        mail:
+          type: string
+          x-skaffolder-id-attr: 5ee5f104eba0fa5742543155
+          x-skaffolder-type: String
+        name:
+          type: string
+          x-skaffolder-id-attr: 5ee5f104eba0fa5742543156
+          x-skaffolder-type: String
+        password:
+          type: string
+          x-skaffolder-id-attr: 5ee5f104eba0fa5742543154
+          x-skaffolder-type: String
+          x-skaffolder-required: true
+        roles:
+          type: string
+          x-skaffolder-id-attr: 5ee5f104eba0fa5742543158
+          x-skaffolder-type: String
+        surname:
+          type: string
+          x-skaffolder-id-attr: 5ee5f104eba0fa5742543157
+          x-skaffolder-type: String
+        username:
+          type: string
+          x-skaffolder-id-attr: 5ee5f104eba0fa5742543153
+          x-skaffolder-type: String
+          x-skaffolder-required: true
+      x-skaffolder-relations: 
+      required:
+        - _id
+        - password
+        - username
+    ccvv:
+      x-skaffolder-id: 5ee5f198eba0fa57425431ec
+      x-skaffolder-id-db: 5ee5f104eba0fa5742543151
+      x-skaffolder-id-entity: 5ee5f198eba0fa57425431e6
+      x-skaffolder-url: /ccvv
+      properties:
+        _id:
+          type: string
+          x-skaffolder-required: true
+        Cognome:
+          type: string
+          x-skaffolder-id-attr: 5ee5f198eba0fa57425431e8
+          x-skaffolder-type: String
+          x-skaffolder-required: true
+        Nome:
+          type: string
+          x-skaffolder-id-attr: 5ee5f198eba0fa57425431e7
+          x-skaffolder-type: String
+          x-skaffolder-required: true
+        Sesso:
+          type: string
+          x-skaffolder-id-attr: 5ee5f198eba0fa57425431e9
+          x-skaffolder-type: String
+          x-skaffolder-required: true
+          x-skaffolder-enumeration:
+            - F
+            - M
+      x-skaffolder-relations: 
+      required:
+        - _id
+        - Cognome
+        - Nome
+        - Sesso
+  x-skaffolder-db:
+    - x-skaffolder-id: 5ee5f104eba0fa5742543151
+      x-skaffolder-name: cc1_db
+  x-skaffolder-page:
+    - x-skaffolder-id: 5ee5f104eba0fa5742543159
+      x-skaffolder-name: Home
+      x-skaffolder-url: /home
+      x-skaffolder-template: 
+      x-skaffolder-resource: 
+      x-skaffolder-services: 
+      x-skaffolder-nesteds: 
+      x-skaffolder-links: 
+      x-skaffolder-roles: []
+    - x-skaffolder-id: 5ee5f21beba0fa57425431fc
+      x-skaffolder-name: ccvvEdit
+      x-skaffolder-url: /ccvvs/{id}
+      x-skaffolder-template: Edit_Crud
+      x-skaffolder-resource: 5ee5f198eba0fa57425431ec
+      x-skaffolder-services:
+        - 5ee5f20deba0fa57425431f7
+        - 5ee5f20deba0fa57425431f8
+        - 5ee5f20deba0fa57425431f9
+      x-skaffolder-nesteds: 
+      x-skaffolder-links:
+        - 5ee5f104eba0fa5742543159
+      x-skaffolder-roles: []
+  x-skaffolder-roles: 
+    - x-skaffolder-id: 5ee5f104eba0fa574254315c
+      x-skaffolder-name: ADMIN

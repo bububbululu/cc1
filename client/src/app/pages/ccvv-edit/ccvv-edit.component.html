@@ -1,0 +1,45 @@
+<!-- TITLE -->
+<div class="mb-40 mt-40">
+    <h1>Ccvv Edit</h1>
+</div>
+<div class="card mb-40">
+    <div class="card-header">
+        <i class="fa fa-edit"></i> Edit
+    </div>
+    <div class="card-body">
+        <form #editForm="ngForm" [ngClass]="{'was-validated': formValid!=null}">
+            <div class="row justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label for="Cognome">Cognome *</label>
+                        <input type="text" class="form-control" id="Cognome" [(ngModel)]="item.Cognome" name="Cognome" #Cognome="ngModel" required>
+                        <div class="invalid-feedback">Value is required</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Nome">Nome *</label>
+                        <input type="text" class="form-control" id="Nome" [(ngModel)]="item.Nome" name="Nome" #Nome="ngModel" required>
+                        <div class="invalid-feedback">Value is required</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Sesso">Sesso *</label>
+                        <select name="Sesso" id="Sesso" [(ngModel)]="item.Sesso" class="form-control" #Sesso="ngModel" required>
+                            <option value=""></option>
+                            <option value="F">F</option>
+                            <option value="M">M</option>
+                        </select>
+                        <div class="invalid-feedback">Value is required</div>
+                    </div>
+
+
+        
+
+                    <!-- BUTTON BAR -->
+                    <div class="mt-40">
+                        <button class="btn btn-primary pull-right" (click)="save(editForm.valid, item)">Save</button>
+                        <button class="btn btn-secondary pull-right mr-2" (click)="goBack()">Back To List</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
